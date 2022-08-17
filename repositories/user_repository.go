@@ -31,3 +31,12 @@ func GetUserById(uuid uuid.UUID) (*User, error) {
 
 	return &user, nil
 }
+
+func UpdateUser(user *User, ethAddress string) error {
+	err := DB.Model(&user).Update("eth_address", ethAddress).Error
+	if err != nil {
+		fmt.Println("Error updating user ")
+		return err
+	}
+	return nil
+}

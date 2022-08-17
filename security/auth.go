@@ -43,12 +43,8 @@ func VerifyPassword(password, hashedPassword string) error {
 }
 
 func LoginCheck(username string, password string) (string, error) {
-
-	var err error
-
 	u := models.User{}
-
-	err = repositories.DB.Model(models.User{}).Where("username = ?", username).Take(&u).Error
+	err := repositories.DB.Model(models.User{}).Where("username = ?", username).Take(&u).Error
 
 	if err != nil {
 		return "", err

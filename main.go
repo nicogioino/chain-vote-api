@@ -21,6 +21,7 @@ func main() {
 	protected := r.Group("/api")
 	protected.Use(middlewares.JwtAuthMiddleware())
 	protected.GET("/me", services.CurrentUser)
+	protected.PUT("/register-address", services.RegisterETHAddress)
 
 	r.Run(":8080")
 }
