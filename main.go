@@ -14,6 +14,7 @@ func main() {
 
 	r := gin.Default()
 
+	// Load environment variables if .env file exists
 	err := godotenv.Load(".vscode/.env")
 	
 	if err != nil {
