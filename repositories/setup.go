@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	. "chain-vote-api/models"
+	 "chain-vote-api/models"
 	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -27,7 +27,7 @@ func ConnectDataBase() {
 		DB = DbConnection
 	}
 
-	err = DB.AutoMigrate(&User{})
+	err = DB.AutoMigrate(&models.User{}, &models.Election{})
 
 	if err != nil {
 		fmt.Println("Cannot migrate database ")

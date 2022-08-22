@@ -1,22 +1,19 @@
 package services
 
 import (
+	"chain-vote-api/mappers"
 	"chain-vote-api/models"
 	"chain-vote-api/repositories"
 	"chain-vote-api/security"
 	"chain-vote-api/utils"
-	"github.com/gin-gonic/gin"
 	"net/http"
-)
 
-type RegisterInput struct {
-	Username string `json:"username" binding:"required"`
-	Password string `json:"password" binding:"required"`
-}
+	"github.com/gin-gonic/gin"
+)
 
 func Register(c *gin.Context) {
 
-	var input RegisterInput
+	var input models.RegisterInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -54,11 +51,9 @@ func CurrentUser(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "success", "data": u})
-}
+	userListing := mappers.UserToListing(u)
 
-type UpdateAddressInput struct {
-	EthAddress string `json:"eth_address" binding:"required"`
+	c.JSON(http.StatusOK, gin.H{"message": "success", "data": userListing})
 }
 
 // RegisterETHAddress updates the user's eth address for the logged user
@@ -70,7 +65,7 @@ func RegisterETHAddress(c *gin.Context) {
 		return
 	}
 
-	updateInput := UpdateAddressInput{}
+	updateInput := models.UpdateAddressInput{}
 	err = c.ShouldBindJSON(&updateInput)
 
 	if err != nil {

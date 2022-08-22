@@ -14,6 +14,21 @@ type User struct {
 	ETHAddress string    `gorm:"size:255;" json:"eth_address"`
 }
 
+type UserListing struct {
+	ID         uuid.UUID `json:"id"`
+	Username   string    `json:"username"`
+	ETHAddress string    `json:"eth_address"`
+}
+
+type UpdateAddressInput struct {
+	EthAddress string `json:"eth_address" binding:"required"`
+}
+
+type RegisterInput struct {
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
+
 func (u *User) BeforeCreate(tx *gorm.DB) (err error) {
 	u.ID = uuid.New()
 

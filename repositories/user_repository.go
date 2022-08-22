@@ -1,12 +1,12 @@
 package repositories
 
 import (
-	. "chain-vote-api/models"
+	"chain-vote-api/models"
 	"fmt"
 	"github.com/google/uuid"
 )
 
-func SaveUser(user *User) (*User, error) {
+func SaveUser(user *models.User) (*models.User, error) {
 
 	err := DB.Create(&user).Error
 
@@ -18,9 +18,9 @@ func SaveUser(user *User) (*User, error) {
 	return user, nil
 }
 
-func GetUserById(uuid uuid.UUID) (*User, error) {
+func GetUserById(uuid uuid.UUID) (*models.User, error) {
 
-	user := User{}
+	user := models.User{}
 
 	err := DB.Where("id = ?", uuid).First(&user).Error
 
@@ -32,7 +32,7 @@ func GetUserById(uuid uuid.UUID) (*User, error) {
 	return &user, nil
 }
 
-func UpdateUser(user *User, ethAddress string) error {
+func UpdateUser(user *models.User, ethAddress string) error {
 	err := DB.Model(&user).Update("eth_address", ethAddress).Error
 	if err != nil {
 		fmt.Println("Error updating user ")

@@ -23,8 +23,6 @@ func main() {
 
 	repositories.ConnectDataBase()
 
-	
-
 	public := r.Group("/api")
 	public.POST("/register", services.Register)
 	public.POST("/login", security.Login)
@@ -33,6 +31,9 @@ func main() {
 	protected.Use(middlewares.JwtAuthMiddleware())
 	protected.GET("/me", services.CurrentUser)
 	protected.PUT("/register-address", services.RegisterETHAddress)
+	protected.POST("/election", services.CreateElection)
+	protected.GET("/election/:id", services.GetElectionById)
+	protected.GET("/elections", services.GetAllElections)
 
 	r.Run(":8080")
 }
