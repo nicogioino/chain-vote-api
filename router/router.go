@@ -22,6 +22,7 @@ func initializePublicRouter(engine *gin.Engine) {
 	public := engine.Group("/api")
 	public.POST("/register", services.Register)
 	public.POST("/login", security.Login)
+	public.GET("/health", services.HealthCheck)
 }
 
 func InitializeRouter(engine *gin.Engine) {
