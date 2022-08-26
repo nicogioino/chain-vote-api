@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	 "chain-vote-api/models"
+	"chain-vote-api/models"
 	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -13,9 +13,7 @@ var DB *gorm.DB
 
 func ConnectDataBase() {
 
-	url := os.Getenv("DATABASE_URL")
-
-	dbUrl := "postgres://test:test@" + url + ":5432/chain-vote-db"
+	dbUrl := os.Getenv("DATABASE_URL")
 
 	DbConnection, err := gorm.Open(postgres.Open(dbUrl), &gorm.Config{})
 
