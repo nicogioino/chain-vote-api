@@ -1,6 +1,7 @@
 package main
 
 import (
+	"chain-vote-api/middlewares"
 	"chain-vote-api/repositories"
 	"chain-vote-api/router"
 	"fmt"
@@ -13,6 +14,7 @@ import (
 func main() {
 
 	r := gin.Default()
+	r.Use(middlewares.AllowAll())
 	router.InitializeRouter(r)
 
 	// Load environment variables if .env file exists

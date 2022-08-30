@@ -13,6 +13,7 @@ require (
 
 require (
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/rs/cors v1.8.2 // indirect
 	golang.org/x/xerrors v0.0.0-20220517211312-f3a8303e98df // indirect
 )
 

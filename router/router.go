@@ -4,7 +4,6 @@ import (
 	"chain-vote-api/middlewares"
 	"chain-vote-api/security"
 	"chain-vote-api/services"
-
 	"github.com/gin-gonic/gin"
 )
 
