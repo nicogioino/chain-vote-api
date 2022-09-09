@@ -6,6 +6,7 @@ import (
 	"chain-vote-api/router"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -25,6 +26,7 @@ func main() {
 	}
 
 	repositories.ConnectDataBase()
+	port := os.Getenv("PORT")
 
-	log.Fatalln(r.Run(":8080"))
+	log.Fatalln(r.Run(":" + port))
 }
